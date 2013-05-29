@@ -19,7 +19,14 @@ KEYWORDS="demos"
 IUSE=""
 
 RDEPEND=""
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	>=dev-python/numpy-1.6.2-r2
+	>=sci-libs/scipy-0.11.0-r1
+	>=dev-python/pyopengl-3.0.2-r1"
+#	>=dev-python/pillow-2.0.0"		-> dev-python/imaging/1.7.8 is ok
+#	>=dev-python/argparse-1.2.1-r2"
+#distribute (0.6.30)
+#wsgiref (0.1.2)
 
 DISTUTILS_IN_SOURCE_BUILD=1
 
