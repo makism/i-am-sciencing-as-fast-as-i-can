@@ -21,7 +21,7 @@ IUSE="doc freeimage gtk qt4 test"
 
 RDEPEND="
 	sci-libs/scikits[${PYTHON_USEDEP}]
-	sci-libs/scipy[umfpack,${PYTHON_USEDEP}]
+	sci-libs/scipy[${PYTHON_USEDEP}]
 	freeimage? ( media-libs/freeimage )
 	gtk? ( dev-python/pygtk[${PYTHON_USEDEP}] )
 	qt4? ( dev-python/PyQt4[${PYTHON_USEDEP}] )"
@@ -37,7 +37,7 @@ DEPEND="
 
 S="${WORKDIR}/${MYPN}-${PV}"
 
-DOCS=( CONTRIBUTORS.txt DEPENDS.txt DEVELOPMENT.txt RELEASE.txt TASKS.txt )
+DOCS=( CONTRIBUTORS.txt CONTRIBUTING.txt DEPENDS.txt RELEASE.txt TASKS.txt )
 
 python_test() {
 	esetup.py \
