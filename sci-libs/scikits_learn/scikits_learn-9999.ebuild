@@ -1,12 +1,12 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header:  $
 
 EAPI=5
 
 PYTHON_COMPAT=( python{2_6,2_7} )
 
-inherit distutils-r1 git-2
+inherit distutils-r1 multilib flag-o-matic  git-2
 
 MYPN="${PN/scikits_/scikit-}"
 
@@ -35,19 +35,19 @@ DEPEND="
 
 S="${WORKDIR}/${MYPN}-${PV}"
 
-#python_prepare_all() {
-#	# bug #397605
-#	[[ ${CHOST} == *-darwin* ]] \
-#		&& append-ldflags -bundle "-undefined dynamic_lookup" \
-#		|| append-ldflags -shared
-#
-#	# scikits-learn now uses the horrible numpy.distutils automagic
-#	export SCIPY_FCONFIG="config_fc --noopt --noarch"
-#}
+python_prepare_all() {
+	# bug #397605
+	[[ ${CHOST} == *-darwin* ]] \
+		&& append-ldflags -bundle "-undefined dynamic_lookup" \
+		|| append-ldflags -shared
 
-#python_compile() {
-#	distutils-r1_python_compile ${SCIPY_FCONFIG}
-#}
+	# scikits-learn now uses the horrible numpy.distutils automagic
+	export SCIPY_FCONFIG="config_fc --noopt --noarch"
+}
+
+python_compile() {
+	distutils-r1_python_compile ${SCIPY_FCONFIG}
+}
 
 python_compile_all() {
 	if use doc; then
@@ -70,10 +70,7 @@ python_test() {
 		install --root="${T}/test-${EPYTHON}" \
 		--no-compile ${SCIPY_FCONFIG} || die
 	cd "${T}/test-${EPYTHON}/${EPREFIX}$(python_get_sitedir)" || die
-
-	if use test; then
-		PYTHONPATH=. nosetests-${EPYTHON} sklearn --exe || die
-	fi
+	PYTHONPATH=. nosetests-${EPYTHON} sklearn --exe || die
 }
 
 python_install() {
