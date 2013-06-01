@@ -1,4 +1,4 @@
-i-am-sciencing-as-fast-as-i-can
+Gentoo Overlay: i-am-sciencing-as-fast-as-i-can
 ===============================
+The best low quality ebuilds for various Python scientific packages >:)
 
-Gentoo Overlay, containing mainly live python science packages :-)
